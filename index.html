@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>輸入顯示範例</title>
+</head>
+<body>
+    <h1>請輸入文字：</h1>
+    <form id="inputForm">
+        <input type="text" id="inputText" name="inputText" placeholder="輸入點什麼..." required>
+        <button type="submit">提交</button>
+    </form>
+
+    
+    <div id="output"></div>
+
+    <script>
+        // 監聽表單提交事件
+        document.getElementById('inputForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // 阻止表單的默認提交動作
+
+            // 獲取輸入框的值
+            const inputText = document.getElementById('inputText').value;
+
+            // 使用 fetch 發送異步 POST 請求
+            fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                },
+                body: new URLSearchParams({
+                    inputText: inputText
+                })
+            })
+            .then(response => response.text()) // 將伺服器回應解析為文字
+            .then(data => {
+                // 將回應的文字顯示在頁面的 output div 中
+                document.getElementById('output').innerHTML = data;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
