@@ -6,4 +6,5 @@
 
 # 操作方式
 如下圖，在輸入框輸入文字，按 submit 後，即可看到伺服器回傳的原輸入文字。
-![image]()
+
+![image](https://github.com/jawa560/node_hello_keyin/blob/main/readme_1.png?raw=true)
